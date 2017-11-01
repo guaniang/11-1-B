@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+	</head>
+	<style type="text/css">
+		#sear{
+			height: 30px;
+			border: none;
+			font-size: 12px;
+			padding-left: 10px;
+			padding-right: 30px;
+			padding-top: 3px;
+			outline: none;
+			border: 1px solid black;
+		}
+		#but{
+			height: 30px;
+			border: none;
+			font-size: 12px;
+			padding-left: 10px;
+			padding-top: 3px;
+			outline: none;
+			border: 1px solid black;
+		}
+		span{
+			width: 30px;
+			height: 20px;
+			text-align: center;
+			margin-left: -40px;
+		}
+	</style>
+
+	<body style="text-align: center; padding-top: 100px;">
+		<input type="search" name="" id="sear" value=""/>
+		 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+		<input type="button" name="" id="but" value="搜索" />
+		<div class="page">
+			
+		</div>
+	</body>
+
+</html>
+<script>
+	$(function(){
+		$('#but').click(function(){
+			var q=$("#sear").val()
+			$.ajax({
+				url: "http://localhost:3000/item/count",
+				type:"post",
+				data:{
+					a:q
+				},
+				success:function(e){
+					$(".page").html('')
+					for(var i in e){
+						$(".page").append('<p>'+e[i].cha+'</p>')
+					}
+				}
+			});
+		})
+		
+		
+})
+</script>
